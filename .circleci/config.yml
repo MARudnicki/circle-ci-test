@@ -5,4 +5,18 @@ jobs:
       - image: circleci/node:4.8.2 # the primary container, where your job's commands are run
     steps:
       - checkout # check out the code in the project directory
-      - run: echo "hello world" # run the `echo` command
+      - run:
+          name: just a simple echo
+          command: echo "hello world
+      - run:
+          name: tests stage
+          commmand: ./mvnw verify
+      - run:
+          name: package jar
+          command: ./mvnw package -DskipTests
+      - run:
+          name: watch the output
+          command: ls -lah
+      - store_artifacts: # store this build output. Read more: https://circleci.com/docs/2.0/artifacts/
+          path: target/demo-0.0.1-SNAPSHOT.jar
+          destination: app
