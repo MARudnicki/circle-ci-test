@@ -39,7 +39,7 @@ jobs:
 #          key: v1-dependencies-{{ checksum "build.gradle" }}
 
       # run tests!
-      - run: mvn package
+      - run: mvn package -DskipTests
 
 #version: 2
 #jobs:
